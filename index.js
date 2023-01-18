@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 const corsOptions ={
-  origin:'https://hosting-6adeb.firebaseapp.com', 
+  origin:'http://localhost:3001', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
