@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 import postRoutes from "./src/routes/Posts.js";
+import Post from "./src/schemas/Posts.js";
 // import authRoutes from "./src/routes/Auth.js";
 // connection to db
 import { connect } from "./src/confiq/db.js";
@@ -37,9 +38,16 @@ const port = 5000;
 
 
 // app.use('/api/auth', authRoutes)
-app.use("/api/posts", postRoutes);
+// app.use("/api/posts", postRoutes);
 
-app.use('/', (req, res)=> res.send("talha"));
+app.use('/', async (req, res)  => {
+  try {
+    const posts = await Post.aggregate([{ $sample: { size: 3 } }]);
+    res.json(posts);
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
