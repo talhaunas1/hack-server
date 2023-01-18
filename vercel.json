@@ -1,9 +1,5 @@
 {
     "version": 2,
-    "env": {
-      "DATABASE_URL": "@database-url",
-      "SECRET_KEY": "@secret-key"
-    },
     "builds": [
       {
         "src": "./index.js",
@@ -13,7 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "/index.js"
       }
     ]
   }
