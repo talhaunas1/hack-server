@@ -20,7 +20,7 @@ app.use(express.json());
 // app.use('/api/auth', authRoutes)
 app.use("/api/posts", postRoutes);
 
-app.get('/', (req, res)=> res.send("talha"));
+app.use('/', (req, res)=> res.send("talha"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
