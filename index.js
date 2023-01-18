@@ -10,7 +10,15 @@ import { connect } from "./src/confiq/db.js";
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+
+const corsOptions ={
+  origin:'https://hosting-6adeb.firebaseapp.com', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
+
+
+app.use(cors(corsOptions));
 dotenv.config();
 
 const port = 5000;
