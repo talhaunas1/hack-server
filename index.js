@@ -10,20 +10,18 @@ import { connect } from "./src/confiq/db.js";
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+dotenv.config();
 
-const corsOptions ={
-  origin:'http://localhost:3001', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
+const corsOptions = {
+  origin: "http://localhost:3001", 
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200
 }
 
-
 app.use(cors(corsOptions));
-dotenv.config();
 
 const port = 5000;
 
-app.use(express.json());
 
 // app.use('/api/auth', authRoutes)
 app.use("/api/posts", postRoutes);
