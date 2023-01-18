@@ -2,7 +2,7 @@ import Post from "../schemas/Posts.js";
 
 export const getPosts = async (req, res) => {
   try {
-    const posts = await Post.aggregate([{ $sample: { size: 40 } }]);
+    const posts = await Post.aggregate([{ $sample: { size: 3 } }]);
     res.json(posts);
   } catch (error) {
     res.send(error);
