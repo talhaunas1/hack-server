@@ -30,11 +30,11 @@ dotenv.config();
 app.use(
   cors({
       credentials: true,
-      origin: "http://localhost:3001",
+      origin: "http://localhost:3000",
   })
 );
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 
 // app.use('/api/auth', authRoutes)
