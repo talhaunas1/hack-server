@@ -30,7 +30,7 @@ dotenv.config();
 app.use(
   cors({
       credentials: true,
-      origin: "https://fantastic-meerkat-f6a9db.netlify.app/",
+      origin: "https://fantastic-meerkat-f6a9db.netlify.app",
   })
 );
 
