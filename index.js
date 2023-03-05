@@ -31,7 +31,7 @@ dotenv.config();
 app.use(
   cors({
       credentials: true,
-      origin: "http://localhost:3000",
+      origin: "https://sweet-capybara-9d834a.netlify.app/",
   })
 );
 // app.use(cors());
