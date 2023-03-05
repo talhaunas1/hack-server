@@ -4,9 +4,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import postRoutes from "./src/routes/Posts.js";
 import Post from "./src/schemas/Posts.js";
+import AuthRoutes from './src/routes/Auth.js'
 // import authRoutes from "./src/routes/Auth.js";
 // connection to db
-import { connect } from "./src/confiq/db.js";
+import { connection } from "./src/database/connection.js";
 
 const app = express();
 app.use(cookieParser());
@@ -30,14 +31,14 @@ dotenv.config();
 app.use(
   cors({
       credentials: true,
-      origin: "https://fantastic-meerkat-f6a9db.netlify.app",
+      origin: "http://localhost:3000",
   })
 );
+// app.use(cors());
+const port = process.env.PORT || 8080;
 
-const port = process.env.PORT || 5000;
 
-
-// app.use('/api/auth', authRoutes)
+app.use('/api/auth', AuthRoutes)
 app.use("/api/posts", postRoutes);
 
 app.use('/', async (req, res)  => {
@@ -49,7 +50,13 @@ app.use('/', async (req, res)  => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-  connect();
-});
+
+async function connect (){
+  try {
+    connection(process.env.MONGO_URL);
+    app.listen(port, console.log(`server running in port ${port}`))
+  } catch (error) {
+    console.log(error);
+  }
+}
+connect();
